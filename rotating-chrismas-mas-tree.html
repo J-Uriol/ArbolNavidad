@@ -21,8 +21,10 @@
 
   document.addEventListener('click', () => {
     let music = new Audio('song.mp3');
+    music.loop = true; 
     music.play();
-  }, { once: true }); // solo reproduce la primera vez
+  }, { once: true });
+
 
 
 
