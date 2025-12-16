@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="rotating-chrismas-tree.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap"
+    rel="stylesheet">
+  <title>Árbol de Navidad JS</title>
+</head>
+
+<body>
+
+  <h1>DAW2 os desea FELIZ NAVIDAD!</h1>
+  <div class="tree" id="tree"></div>
+  <footer>Hecho por @abeloriss, @_uriolmzn_ y @nesss_27_</footer>
+  <script>
+
+  document.addEventListener('click', () => {
+    let music = new Audio('song.mp3');
+    music.play();
+  }, { once: true }); // solo reproduce la primera vez
+
+
+
+    // --- CONFIGURACIÓN ---
+    const config = {
+      lightCount: 66,       // Cantidad de luces
+      text: "* ABEL * JAVIER * NESTOR*PEDRO*MARCOS*ADRIÁN*KARLA*FOUNEKE*STEFFAN*", // Tu mensaje (se invierte auto)
+      yStart: 0,          // Altura inicial
+      yEnd: 120,             // Altura final
+      radiusStart: 15.25,   // Ancho del árbol abajo
+      radiusEnd: 0.25,      // Ancho del árbol arriba (punta)
+      rotateStart: 1770,    // Rotación inicial de la espiral
+      rotateStep: 28.8      // Cuánto gira cada luz respecto a la anterior
+    }
+
+    const treeContainer = document.getElementById('tree')
+
+    // Preparamos el texto: lo invertimos para que se lea bien de arriba a abajo en la espiral
+    // y lo rellenamos con espacios si faltan letras
+    const msgReversed = config.text.split('').reverse().join('')
+
+    // Función auxiliar para calcular valores intermedios (interpolación lineal)
+    const mapRange = (val, inMin, inMax, outMin, outMax) => {
+      return ((val - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+    }
+
+    // --- GENERACIÓN DE LUCES ---
+    for (let i = 0; i < config.lightCount; i++) {
+      const light = document.createElement('div')
+      light.className = 'tree__light'
+
+      // 1. Calcular propiedades matemáticas basadas en la posición (i)
+      const currentY = mapRange(i, 0, config.lightCount, config.yStart, config.yEnd)
+      const currentRadius = mapRange(i, 0, config.lightCount, config.radiusStart, config.radiusEnd)
+      const currentRotate = config.rotateStart - (i * config.rotateStep)
+
+      // 2. Generar aleatoriedad para el parpadeo (Speed y Delay)
+      const speed = Math.random() * 10
+      const delay = (Math.random() * 10) * -1
+      const appear = i - 11 // Ajuste para el offset de aparición original
+
+      // 3. Asignar estilos CSS variables
+      light.style.setProperty('--appear', appear)
+      light.style.setProperty('--y', currentY)
+      light.style.setProperty('--rotate', currentRotate)
+      light.style.setProperty('--radius', currentRadius)
+      light.style.setProperty('--speed', speed)
+      light.style.setProperty('--delay', delay)
+
+      // 4. Poner la letra si corresponde
+      if (msgReversed[i]) {
+        light.style.fontSize = `${(config.lightCount - i) * 0.01 + 1}em`
+        if (msgReversed[i] == '*') {
+          light.style.color = '#f00'
+          light.style.fontSize = '3em'
+        }
+        light.innerText = msgReversed[i]
+      }
+
+      treeContainer.appendChild(light)
+    }
+
+    // --- AGREGAR LA ESTRELLA (SVG) AL FINAL ---
+    const starHTML = `
+      <svg class="tree__star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.32 108.44" style="--delay: 50">
+        <path d="M90.19 -245.67L57.12 -262.62 24.4 -245l5.91-36.69L3.44 -307.35l36.72-5.72 16.1-33.5L73.06 -313.4l36.83 4.97-26.35 26.21z"
+              fill="none" stroke-width="6.88" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    `
+    // Insertamos la estrella al final del contenedor
+    treeContainer.insertAdjacentHTML('beforeend', starHTML)
+
+
+    function crearCopo() {
+      const copo = document.createElement('div');
+      copo.innerHTML = '❄';
+      copo.classList.add('copo-nieve');
+
+      const tamaño = Math.random() * 10 + 10 + 'px';
+      copo.style.fontSize = tamaño;
+
+      copo.style.left = Math.random() * 100 + 'vw';
+
+      const duracion = Math.random() * 3 + 2 + 's';
+      copo.style.animationDuration = duracion;
+
+      copo.style.opacity = Math.random();
+
+      document.body.appendChild(copo);
+
+      setTimeout(() => {
+        copo.remove();
+      }, parseFloat(duracion) * 1000);
+    }
+
+    setInterval(crearCopo, 100);
+  </script>
+
+</body>
+
+</html>

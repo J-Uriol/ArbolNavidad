@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 15vh;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  font-family: "Mountains of Christmas";
+  overflow: hidden;
+}
+
+h1 {
+  color: white;
+  height: 5vh;
+}
+
+footer {
+  color: white;
+  height: 5vh;
+}
+
+.tree {
+  height: 50vh;
+  width: 30vw;
+  transform-style: preserve-3d;
+  -webkit-animation: spin 10s infinite linear;
+  animation: spin 10s infinite linear;
+}
+
+.tree__light {
+  transform-style: preserve-3d;
+  position: absolute;
+  height: 1vmin;
+  font-weight: bold;
+  color: green;
+  text-shadow: #fff 1px 0 10px;
+  width: 1vmin;
+  border-radius: 50%;
+  -webkit-animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s)
+      infinite steps(4),
+    appear 0.5s calc(var(--appear) * 0.05s) both;
+  animation: flash calc(var(--speed) * 1s) calc(var(--delay) * 1s) infinite
+      steps(4),
+    appear 0.5s calc(var(--appear) * 0.05s) both;
+  left: 50%;
+  transform: translate(-50%, 50%) rotateY(calc(var(--rotate, 0) * 1deg))
+    translate3d(0, 0, calc(var(--radius, 0) * 1vmin));
+  bottom: calc(var(--y, 0) * 1%);
+}
+
+.tree__star {
+  stroke-width: 5vmin;
+  stroke: #f5e0a3;
+  filter: drop-shadow(0 0 2vmin #fcf1cf);
+  height: 3vmin;
+  width: 3vmin;
+  overflow: visible !important;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  stroke-dasharray: 1000 1000;
+  fill: none;
+  -webkit-animation: stroke 1s calc((var(--delay) * 0.95) * 0.05s) both;
+  animation: stroke 1s calc((var(--delay) * 0.95) * 0.05s) both;
+}
+@-webkit-keyframes stroke {
+  from {
+    stroke-dashoffset: -1000;
+  }
+}
+@keyframes stroke {
+  from {
+    stroke-dashoffset: -1000;
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+@-webkit-keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+/* --- CÓDIGO CSS DEL EFECTO NIEVE --- */
+.copo-nieve {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  color: #fff;
+  pointer-events: none;
+  user-select: none;
+  border-radius: 50%;
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px) rotate(360deg);
+    opacity: 0.3;
+  }
+}
