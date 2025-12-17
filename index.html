@@ -18,14 +18,37 @@
   <div class="tree" id="tree"></div>
   <script>
 
-  document.addEventListener('click', () => {
-    let music = new Audio('song.mp3');
-    music.loop = true; 
-    music.play();
-  }, { once: true });
+    const bpm = 85
+    const negra = 60 / bpm
+    const corchea = negra / 2
 
+    const ritmo = [
+      { nota: 'MI', dur: corchea },
+      { nota: 'MI', dur: corchea },
+      { nota: 'MI', dur: negra },
+      { nota: 'MI', dur: corchea },
+      { nota: 'MI', dur: corchea },
+      { nota: 'MI', dur: negra },
+      { nota: 'MI_SOL', dur: negra },
+      { nota: 'FA', dur: negra },
+    ]
 
+    let index = 0
 
+    function imprimirNota() {
+      const n = ritmo[index]
+      console.log(`${n.nota} -> ${new Date().toLocaleTimeString()}`)
+      index++
+      if (index >= ritmo.length) index = 0
+      setTimeout(imprimirNota, n.dur * 1000)
+    }
+
+    document.addEventListener('click', () => {
+      const music = new Audio('song.mp3')
+      music.loop = true
+      music.play()
+      imprimirNota()
+    }, { once: true })
 
     // --- CONFIGURACIÓN ---
     const config = {
@@ -121,6 +144,7 @@
 
     setInterval(crearCopo, 100);
   </script>
+
 
 </body>
 
