@@ -47,7 +47,7 @@ $(function() {
         light.style.setProperty("--delay", delay);
 
         if (msgReversed[i]) {
-            light.style.fontSize = `${(config.lightCount - i) * 0.01 + 1}em`;
+            light.style.fontSize = `${(config.lightCount - i) * 0.02 + 1}em`;
             if (msgReversed[i] == "*") {
                 light.style.color = "#fff";
                 light.style.fontSize = "3em";

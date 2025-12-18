@@ -1,7 +1,7 @@
 $(function () {
 
-    const $container = $('#balls')
-    const minDist = $container.width() / 10
+    let $container = $('#balls')
+    const minDist = $container.width() / 5
     const minDist2 = minDist * minDist
 
     const width = $container.width()
@@ -35,6 +35,9 @@ $(function () {
     }
 
     $.each(colors, function (i, c) {
+
+        if (i == 7) $container = $('#balls2')
+
         let x, y
 
         do x = random(width) , y = random(height)
