@@ -146,6 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
         music.loop = true
         music.play()
         setTimeout(imprimirNota, 300)
-        setTimeout(() => window.location.reload(), 46000)
+        setTimeout(() => window.location.reload(), 45000)
     }, { once: true })
 })
