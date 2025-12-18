@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const BPM = 85;
-    const negra = 60 / BPM;
-    const blanca = negra * 2;
-    const redonda = negra * 4;
-    const corchea = negra / 2;
-    const corcheaConPuntillo = corchea + (corchea / 2);
-    const semicorchea = corchea / 2;
-    const negraConPuntillo = negra + (negra / 2);
+    const BPM = 85
+    const negra = 60 / BPM
+    const blanca = negra * 2
+    const redonda = negra * 4
+    const corchea = negra / 2
+    const corcheaConPuntillo = corchea + (corchea / 2)
+    const semicorchea = corchea / 2
+    const negraConPuntillo = negra + (negra / 2)
 
     const ritmo = [
         { nota: "SOL", dur: corchea },
@@ -107,43 +107,40 @@ document.addEventListener("DOMContentLoaded", () => {
         { nota: "", dur: corchea },
         { nota: "", dur: corchea },
         { nota: "", dur: blanca },
-    ];
+    ]
 
-    let index = 0; // Inicializar el índice
+    let index = 0
 
     function imprimirNota() {
-        const n = ritmo[index % ritmo.length]; // Aseguramos que no se salga del rango
-        const ornament = $(`.ornament`);
-        const duracion = n.dur;
+        const n = ritmo[index % ritmo.length] 
+        const ornament = $(`.ornament`)
+        const duracion = n.dur
 
-        // Determinar el número de bolas a iluminar (entre 7 y 14)
-        const numBolas = Math.min(Math.max(Math.round(duracion / negra * 7), 7), 14);
+        const numBolas = Math.min(Math.max(Math.round(duracion / negra * 7), 7), 14)
 
-        // Seleccionar bolas aleatorias dentro del rango de bolas disponibles
-        const indicesAleatorios = [];
+        const indicesAleatorios = []
         while (indicesAleatorios.length < numBolas) {
-            const randomIndex = Math.floor(Math.random() * ornament.length);
+            const randomIndex = Math.floor(Math.random() * ornament.length)
             if (!indicesAleatorios.includes(randomIndex)) {
-                indicesAleatorios.push(randomIndex);
+                indicesAleatorios.push(randomIndex)
             }
         }
 
-        // Iluminar las bolas aleatorias
         indicesAleatorios.forEach(i => {
-            const bola = $(ornament[i]);
-            bola.css('opacity', 1);
-            setTimeout(() => bola.css('opacity', 0.5), 100);
-        });
+            const bola = $(ornament[i])
+            bola.css('opacity', 1)
+            setTimeout(() => bola.css('opacity', 0.5), 100)
+        })
 
-        index++;
+        index++
 
-        setTimeout(imprimirNota, n.dur * 1000);
+        setTimeout(imprimirNota, n.dur * 1000)
     }
 
     document.addEventListener("click", () => {
-        const music = new Audio("media/song.mp3");
-        music.loop = true;
-        music.play();
-        setTimeout(imprimirNota, 300);
-    }, { once: true });
-});
+        const music = new Audio("media/song.mp3")
+        music.loop = true
+        music.play()
+        setTimeout(imprimirNota, 300)
+    }, { once: true })
+})
