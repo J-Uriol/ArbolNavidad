@@ -128,8 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         indicesAleatorios.forEach(i => {
             const bola = $(ornament[i])
-            bola.css('opacity', 1)
-            setTimeout(() => bola.css('opacity', 0.5), 100)
+            bola.css('filter', 'brightness(1.6)')
+
+
+
+            setTimeout(() => bola.css('filter', 'brightness(0.7)'), 100)
         })
 
         index++
@@ -139,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("click", () => {
         const music = new Audio("media/song.mp3")
+        $('#texto').text('¡DAW2 os desea FELIZ NAVIDAD!')
         music.loop = true
         music.play()
         setTimeout(imprimirNota, 300)

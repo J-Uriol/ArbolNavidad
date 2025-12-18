@@ -3,8 +3,8 @@
 }
 
 body {
-  background: #295899;
-background: linear-gradient(90deg,rgba(41, 88, 153, 1) 20%, rgba(17, 68, 156, 1) 50%, rgba(32, 102, 201, 1) 80%);
+  background: #212c80;
+  background: linear-gradient(90deg, rgba(33, 44, 128, 1) 20%, rgb(30, 54, 130) 50%, rgba(31, 51, 163, 1) 80%);
   min-height: 100vh;
   display: flex;
   justify-content: space-evenly;
@@ -18,16 +18,18 @@ background: linear-gradient(90deg,rgba(41, 88, 153, 1) 20%, rgba(17, 68, 156, 1)
 
 .balls {
   position: absolute;
-  left: 0;
-  width: 30vw;
-  height: 100vh;
+  left: 5vw;
+  width: 25vw;
+  top: 5vh;
+  height: 90vh;
 }
 
 .balls2 {
   position: absolute;
-  right: 0;
-  width: 30vw;
-  height: 100vh;
+  right: 5vw;
+  width: 25vw;
+  top: 5vh;
+  height: 90vh;
 }
 
 .ornament {
@@ -35,10 +37,10 @@ background: linear-gradient(90deg,rgba(41, 88, 153, 1) 20%, rgba(17, 68, 156, 1)
   background-image: radial-gradient(circle at right bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, .0));
   border-radius: 50%;
   box-shadow: inset 5px 5px 1em rgba(255, 255, 255, .6);
-  height: 44px;
+  height: 4em;
   margin: 0 1em;
-  opacity: 0.5;
-  width: 44px;
+  filter: brightness(0.7);
+  width: 4em;
 
   &::before {
     position: absolute;
@@ -98,7 +100,7 @@ h1 {
   position: absolute;
   height: 1vmin;
   font-weight: bold;
-  color: green;
+  color: rgb(0, 213, 0);
   text-shadow: #14690c46 0 0 10px;
   width: 1vmin;
   border-radius: 50%;
