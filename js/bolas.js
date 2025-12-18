@@ -1,7 +1,7 @@
 $(function () {
 
     let $container = $('#balls')
-    const minDist = $container.width() / 5
+    const minDist = $container.width() / 4
     const minDist2 = minDist * minDist
 
     const width = $container.width()
